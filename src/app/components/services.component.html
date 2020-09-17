@@ -1,0 +1,109 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" (click)="showModal(modalConfirmacionSession)">Añadir
+  Desarollador</button>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombres Completos</th>
+        <th scope="col">github</th>
+        <th scope="col">tecnologias</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let array of data">
+
+        <td>{{array.nombres_completos}}</td>
+        <td>{{array.link_gitHub}}</td>
+        <td>{{array.tecnologias_conocidas}}</td>
+        <td>
+          <i class="material-icons" placement="bottom" ngbTooltip="Save"
+            (click)="showModal(modalConfirmacionSession)">edit</i>
+          <i class="material-icons" placement="bottom" ngbTooltip="Save" (click)="delete(array)">delete</i>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div bsModal #modalConfirmacionSession="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1" [config]="{ignoreBackdropClick: true, keyboard: false}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+
+
+      <div class="col-11 center ml-4 mt-1 rounded" style="height: 25px; width: 100%;" style="border: 3px;"
+        style="background: rgb(26, 56, 153);color: white;">
+        <p class="col-11 mt-3 ml-3 tituloProcesoFinalizado">
+          Confirmación</p>
+      </div>
+
+      <form (ngSubmit)="onSubmit()" #editForm="ngForm" style="padding: 25px;">
+        <div class="form-group">
+          <label class="form-control-label" for="nombresCompletos">Nombres Completos</label>
+          <input type="text" class="form-control" name="streetAddress" id="nombresCompletos"
+            [(ngModel)]="model.nombres_completos" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="linkGitHub">Git Hub</label>
+          <input type="text" class="form-control" name="link_gitHub" id="linkGitHub" [(ngModel)]="model.link_gitHub" required/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="tecnologias">Tecnologias Conocidas</label>
+          <input type="text" class="form-control" name="tecnologias_conocidas" id="tecnologias" [(ngModel)]="model.tecnologias_conocidas" required/>
+        </div>
+
+        <div>
+          <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="cancelarCerrarSession(modalConfirmacionSession);">
+              <span >Cancelar</span>
+          </button>
+          <button type="submit" id="save-entity" [disabled]="editForm.form.invalid " class="btn btn-primary">
+              <span >Guardar</span>
+          </button>
+      </div>
+
+      </form>
+      <div class="container-fluid">
+        <div class="row col-12">
+          <div class="col-3"></div>
+          <div class="col-6" style="text-align: center">
+            <button class="btn btn-success mb-3" style="padding:8px;" type="button"
+              (click)="aceptarCerrarSession(modalConfirmacionSession);">
+              <i class="fa fa-check"></i> Sí
+            </button>
+            <button class="btn btn-danger ml-4 mb-3" style="padding:8px;" type="button"
+              (click)="cancelarCerrarSession(modalConfirmacionSession);">
+              <i class="fa fa-close "></i> No
+            </button>
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="nombres_completos">
+    <th mat-header-cell *matHeaderCellDef> Nombres Completos. </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombres_completos}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="tecnologias_conocidas">
+    <th mat-header-cell *matHeaderCellDef> Tecnologias Conocidas </th>
+    <td mat-cell *matCellDef="let element"> {{element.tecnologias_conocidas}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="link_gitHub">
+    <th mat-header-cell *matHeaderCellDef> gitHub </th>
+    <td mat-cell *matCellDef="let element"> {{element.tecnologias_conocidas}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>-->
