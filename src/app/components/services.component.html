@@ -19,7 +19,7 @@
         <td>{{array.tecnologias_conocidas}}</td>
         <td>
           <i class="material-icons" placement="bottom" ngbTooltip="Save"
-            (click)="showModal(modalConfirmacionSession)">edit</i>
+            (click)="chooseDeveloper(array,modalConfirmacionSession)">edit</i>
           <i class="material-icons" placement="bottom" ngbTooltip="Save" (click)="delete(array)">delete</i>
         </td>
       </tr>
@@ -40,7 +40,7 @@
           Confirmación</p>
       </div>
 
-      <form (ngSubmit)="onSubmit()" #editForm="ngForm" style="padding: 25px;">
+      <form (ngSubmit)="onSubmit(modalConfirmacionSession)" #editForm="ngForm" style="padding: 25px;">
         <div class="form-group">
           <label class="form-control-label" for="nombresCompletos">Nombres Completos</label>
           <input type="text" class="form-control" name="streetAddress" id="nombresCompletos"
@@ -66,22 +66,6 @@
       </div>
 
       </form>
-      <div class="container-fluid">
-        <div class="row col-12">
-          <div class="col-3"></div>
-          <div class="col-6" style="text-align: center">
-            <button class="btn btn-success mb-3" style="padding:8px;" type="button"
-              (click)="aceptarCerrarSession(modalConfirmacionSession);">
-              <i class="fa fa-check"></i> Sí
-            </button>
-            <button class="btn btn-danger ml-4 mb-3" style="padding:8px;" type="button"
-              (click)="cancelarCerrarSession(modalConfirmacionSession);">
-              <i class="fa fa-close "></i> No
-            </button>
-          </div>
-          <div class="col-3"></div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
